@@ -1,18 +1,26 @@
 <li id="task-{{ task.id }}" class="task-view">
   <span class="task-title">{{ task.title }}</span>
 
+  <!-- EDIT: clearer label + styling hook -->
   <form action="/tasks/{{ task.id }}/edit" method="get" style="display: inline;"
         hx-get="/tasks/{{ task.id }}/edit"
         hx-target="#task-{{ task.id }}"
         hx-swap="outerHTML">
-    <button type="submit" aria-label="Edit task: {{ task.title }}">Edit</button>
+    <button type="submit"
+            class="edit-btn"
+            aria-label="Edit task: {{ task.title }}">
+      ✏️ Edit
+    </button>
   </form>
 
+  <!-- DELETE: clearer confirmation text -->
   <form action="/tasks/{{ task.id }}/delete" method="post" style="display: inline;"
         hx-delete="/tasks/{{ task.id }}"
         hx-target="#task-{{ task.id }}"
         hx-swap="outerHTML"
-        hx-confirm="Delete the task '{{ task.title }}'?">
-    <button type="submit" aria-label="Delete task: {{ task.title }}">Delete</button>
+        hx-confirm="⚠️ Are you sure you want to permanently delete the task '{{ task.title }}'?">
+    <button type="submit" aria-label="Delete task: {{ task.title }}">
+      🗑 Delete
+    </button>
   </form>
 </li>
